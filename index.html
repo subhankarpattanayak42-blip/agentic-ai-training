@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI Training — Military Professionals</title>
+<style>
+  :root{
+    --bg:#060D1E; --accent:#00D4FF; --card:#0F1A30; --border:#2A3A5C;
+    --white:#FFFFFF; --grey:#A8B4C8; --font:'Calibri','Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; background:var(--bg); color:var(--white);
+    font-family:var(--font); overflow:hidden;}
+  /* progress bar */
+  #prog{position:fixed; top:0; left:0; height:5px; background:var(--accent);
+    width:var(--p,0%); z-index:50; transition:width .3s ease;}
+  /* dot rail */
+  #rail{position:fixed; right:18px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:10px; z-index:40;}
+  .dot{width:10px; height:10px; border-radius:50%; border:1px solid var(--accent);
+    background:transparent; cursor:pointer; padding:0; transition:.2s;}
+  .dot.on{background:var(--accent); transform:scale(1.3);}
+  /* HUD counter */
+  #hud{position:fixed; bottom:18px; left:22px; font-size:13px; color:var(--grey);
+    letter-spacing:1px; z-index:40;}
+  #brand{position:fixed; bottom:18px; right:22px; font-size:12px; color:var(--border);
+    letter-spacing:.5px; z-index:40;}
+  /* deck */
+  .deck{position:fixed; inset:0;}
+  .slide{position:absolute; inset:0; display:none; flex-direction:column;
+    justify-content:center; padding:6vw 7vw; opacity:0;}
+  .slide.active{display:flex; animation:fade .4s ease forwards;}
+  @keyframes fade{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+  /* components */
+  .kicker{font-size:clamp(13px,1.6vw,17px); font-weight:700; color:var(--accent);
+    letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;}
+  h1{font-size:clamp(34px,5vw,64px); font-weight:700; line-height:1.05;
+    margin-bottom:8px;}
+  h2{font-size:clamp(26px,3.6vw,42px); font-weight:700; margin-bottom:24px;}
+  .sub{font-size:clamp(15px,1.9vw,21px); color:var(--grey); margin-bottom:6px;}
+  .muted{color:var(--grey);}
+  .topline{border-top:2px solid var(--accent); width:70px; margin-bottom:26px;}
+  .grid{display:grid; gap:18px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:22px 24px;}
+  .card h3{color:var(--accent); font-size:clamp(16px,1.9vw,21px); margin-bottom:8px;
+    letter-spacing:.5px;}
+  .card p{font-size:clamp(14px,1.6vw,18px); color:var(--white); line-height:1.5;}
+  .card .small{font-size:clamp(12px,1.4vw,15px); color:var(--grey); margin-top:6px;}
+  ul{list-style:none;}
+  ul li{font-size:clamp(15px,1.9vw,20px); padding:7px 0 7px 26px; position:relative;
+    line-height:1.4;}
+  ul li::before{content:"•"; color:var(--accent); position:absolute; left:4px;
+    font-weight:700;}
+  .row{display:flex; gap:20px; align-items:flex-start;}
+  .formula{font-size:clamp(20px,2.8vw,30px); font-weight:700; color:var(--accent);
+    text-align:center; padding:22px; margin-top:26px;}
+  .seq{color:var(--accent); font-weight:700; margin-right:12px;}
+  .agenda li .seq{display:inline-block;}
+  .num{font-size:clamp(60px,10vw,140px); font-weight:800; color:transparent;
+    -webkit-text-stroke:2px var(--accent); line-height:1; margin-bottom:14px;}
+  .center{text-align:center; justify-content:center; align-items:center;}
+  .big{font-size:clamp(44px,8vw,96px); font-weight:800;}
+  .divider{justify-content:center;}
+  .divider .amber{color:var(--accent);}
+  em.tag{font-style:italic; color:var(--grey); font-size:clamp(13px,1.5vw,16px);}
+  @media(max-width:760px){ .g3{grid-template-columns:1fr;} .row{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="rail"></div>
+<div id="hud"></div>
+<div id="brand">Agentic AI Training · IMI Bhubaneswar</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide center">
+    <div class="kicker">Two-Day Hands-On Workshop</div>
+    <h1>AGENTIC AI TRAINING</h1>
+    <h2 class="sub" style="margin-bottom:10px;">for Military Professionals</h2>
+    <p class="sub" style="margin-bottom:34px;">Building Real Agents From Scratch</p>
+    <div class="topline" style="margin:0 auto 26px;"></div>
+    <p class="sub" style="font-size:clamp(14px,1.8vw,19px);">
+      Foundations &nbsp;→&nbsp; Live Demos &nbsp;→&nbsp; Deployment &nbsp;→&nbsp; Agentic Use Cases
+    </p>
+    <p style="margin-top:40px; font-size:clamp(15px,1.8vw,19px); font-weight:700;">Subhankar Pattanayak</p>
+    <p class="muted" style="font-size:clamp(12px,1.5vw,15px); margin-top:4px;">
+      IMI Bhubaneswar · subhankar003.fpm26@imibh.edu.in</p>
+    <div class="kicker" style="margin-top:46px;">Press → to begin</div>
+  </section>
+
+  <!-- 2 SECTION DIVIDER -->
+  <section class="slide divider center">
+    <div class="num">01</div>
+    <h1>DAY 1 · FOUNDATIONS &amp; LIVE DEMOS</h1>
+    <p class="sub">Intuition first — then watch real agents act.</p>
+  </section>
+
+  <!-- 3 AGENDA DAY 1 -->
+  <section class="slide">
+    <div class="kicker">Day 1 · Foundations &amp; Live Demos</div>
+    <h2>Agenda — Day 1</h2>
+    <div class="topline"></div>
+    <ul class="agenda" style="max-width:900px;">
+      <li><span class="seq">01</span>LLMs vs Agents — understanding the difference</li>
+      <li><span class="seq">02</span>Key criteria &amp; development timeline of agents</li>
+      <li><span class="seq">03</span>Types of agents available today</li>
+      <li><span class="seq">04</span>Demo — web-based agents for email, calendar &amp; personal updates</li>
+      <li><span class="seq">05</span>Small use cases &amp; hands-on illustrations</li>
+    </ul>
+  </section>
+
+  <!-- 4 LLMs vs AGENTS -->
+  <section class="slide">
+    <div class="kicker">Foundations</div>
+    <h2>LLMs vs Agents</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>LLM (Large Language Model)</h3>
+        <ul>
+          <li>Responds to prompts</li>
+          <li>Text in, text out</li>
+          <li>No memory between sessions</li>
+          <li>Cannot take actions</li>
+          <li>Examples: GPT-4, Claude, Gemini</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Agent (AI Agent)</h3>
+        <ul>
+          <li>Autonomous goal-seeking</li>
+          <li>Memory &amp; context-aware</li>
+          <li>Uses tools &amp; takes actions</li>
+          <li>Multi-step reasoning</li>
+          <li>Examples: Grokbot, OpenClaw, AutoGPT</li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula">An Agent = LLM + Memory + Tools + Autonomy</div>
+  </section>
+
+  <!-- 5 KEY CRITERIA -->
+  <section class="slide">
+    <div class="kicker">Foundations</div>
+    <h2>Key Criteria of an Agent</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>Autonomy</h3><p>Operates without constant human oversight</p></div>
+      <div class="card"><h3>Perception</h3><p>Understands environment &amp; context</p></div>
+      <div class="card"><h3>Reasoning</h3><p>Plans multi-step actions toward goals</p></div>
+      <div class="card"><h3>Memory</h3><p>Retains information across sessions</p></div>
+      <div class="card"><h3>Tool Use</h3><p>Calls APIs, sends emails, updates calendars</p></div>
+      <div class="card"><h3>Learning</h3><p>Improves from feedback &amp; experience</p></div>
+    </div>
+  </section>
+
+  <!-- 6 TIMELINE -->
+  <section class="slide">
+    <div class="kicker">Foundations</div>
+    <h2>Agent Development Timeline</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>2020–21</h3><p><strong class="muted" style="color:var(--white);">Narrow AI</strong></p><p class="small">Single-task models, no autonomy</p></div>
+      <div class="card"><h3>2022–23</h3><p><strong style="color:var(--white);">LLM Era</strong></p><p class="small">ChatGPT, Claude — conversational AI</p></div>
+      <div class="card"><h3>2023–24</h3><p><strong style="color:var(--white);">Agent Frameworks</strong></p><p class="small">LangChain, AutoGPT, CrewAI</p></div>
+      <div class="card"><h3>2024–25</h3><p><strong style="color:var(--white);">Production Agents</strong></p><p class="small">OpenClaw, Grokbot — real-world use</p></div>
+      <div class="card"><h3>2025–26</h3><p><strong style="color:var(--white);">Multi-Agent Systems</strong></p><p class="small">Teams of agents collaborating</p></div>
+      <div class="card"><h3>Next</h3><p><strong style="color:var(--white);">You build here</strong></p><p class="small">Applied to military operations</p></div>
+    </div>
+  </section>
+
+  <!-- 7 TYPES OF AGENTS -->
+  <section class="slide">
+    <div class="kicker">Foundations</div>
+    <h2>Types of Agents</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>Reflex Agents</h3><p>Simple stimulus-response; no memory or planning</p></div>
+      <div class="card"><h3>Model-Based</h3><p>Maintain internal state; understand environment</p></div>
+      <div class="card"><h3>Goal-Based</h3><p>Work toward specific objectives; plan actions</p></div>
+      <div class="card"><h3>Utility-Based</h3><p>Maximize a utility function; optimize outcomes</p></div>
+      <div class="card"><h3>Learning Agents</h3><p>Improve from experience; adapt over time</p></div>
+      <div class="card"><h3>Multi-Agent Systems</h3><p>Multiple agents collaborate; divide &amp; conquer</p></div>
+    </div>
+  </section>
+
+  <!-- 8 LIVE DEMO -->
+  <section class="slide">
+    <div class="kicker">Day 1 · Live Demo</div>
+    <h2>Web-Based Agents in Action</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>📧 Email Automation</h3><p>Draft, send &amp; manage email using natural language</p></div>
+      <div class="card"><h3>📅 Calendar Management</h3><p>Schedule meetings, set reminders, update events via chat</p></div>
+      <div class="card"><h3>🔔 Personal Updates</h3><p>News briefings, weather alerts, task notifications</p></div>
+      <div class="card"><h3>📊 Data Summarization</h3><p>Summarize reports &amp; extract insights from documents</p></div>
+    </div>
+    <p class="muted" style="margin-top:24px; font-style:italic; font-size:clamp(14px,1.7vw,18px);">
+      Small use cases are prepared to illustrate each capability.
+    </p>
+  </section>
+
+  <!-- 9 DAY 2 DIVIDER -->
+  <section class="slide divider center">
+    <div class="num">02</div>
+    <h1>DAY 2 · TECHNICAL DEEP DIVE &amp; INFRASTRUCTURE</h1>
+    <p class="sub">From watching demos to building &amp; deploying.</p>
+  </section>
+
+  <!-- 10 AGENDA DAY 2 -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Technical Deep Dive &amp; Infrastructure</div>
+    <h2>Agenda — Day 2</h2>
+    <div class="topline"></div>
+    <ul class="agenda" style="max-width:960px;">
+      <li><span class="seq">01</span>Installing agents on a local laptop</li>
+      <li><span class="seq">02</span>Hosted / cloud deployment options</li>
+      <li><span class="seq">03</span>Ready-made agents — Grokbot &amp; alternatives</li>
+      <li><span class="seq">04</span>Building custom agents — OpenClaw &amp; DeepSeek harnesses</li>
+      <li><span class="seq">05</span>Infrastructure — OpenRouter, LLM sourcing &amp; API keys</li>
+      <li><span class="seq">06</span>Showcasing agent capabilities &amp; use cases</li>
+    </ul>
+  </section>
+
+  <!-- 11 INSTALLING AGENTS -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Deployment</div>
+    <h2>Installing Agents</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Local Laptop</h3>
+        <ul>
+          <li>Install Python / Node.js</li>
+          <li>Set up a virtual environment</li>
+          <li>Install the agent framework</li>
+          <li>Configure API keys</li>
+          <li>Run the agent locally</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Hosted / Cloud</h3>
+        <ul>
+          <li>AWS / Azure / GCP setup</li>
+          <li>Docker containerization</li>
+          <li>Managed Kubernetes</li>
+          <li>Serverless options</li>
+          <li>Scaling &amp; monitoring</li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula" style="font-size:clamp(17px,2.2vw,24px);">Both paths covered — choose what fits your security requirements.</div>
+  </section>
+
+  <!-- 12 READY-MADE -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Ready-Made</div>
+    <h2>Ready-Made Agents (Build vs Buy)</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>Grokbot</h3><p>X/Twitter-based agent for social media automation &amp; content generation</p></div>
+      <div class="card"><h3>OpenClaw</h3><p>Personal AI assistant — multi-channel (WhatsApp, Telegram), self-hosted &amp; secure</p></div>
+      <div class="card"><h3>AutoGPT</h3><p>Autonomous goal-seeking — web browsing, file operations</p></div>
+      <div class="card"><h3>CrewAI</h3><p>Multi-agent collaboration — role-based teamwork, complex workflows</p></div>
+    </div>
+  </section>
+
+  <!-- 13 BUILDING CUSTOM -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Custom Build</div>
+    <h2>Building Custom Agents</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>OpenClaw Harness</h3>
+        <em class="tag">The open-source self-hosted standard.</em>
+        <ul style="margin-top:12px;">
+          <li>Open-source framework</li>
+          <li>Multi-model support (GPT, Claude, Gemini)</li>
+          <li>Plugin architecture</li>
+          <li>WhatsApp, Telegram, Discord integration</li>
+          <li>Self-hosted — full data control</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>DeepSeek Harness</h3>
+        <em class="tag">Cost-efficient alternative for constrained setups.</em>
+        <ul style="margin-top:12px;">
+          <li>Cost-effective inference</li>
+          <li>High-quality reasoning</li>
+          <li>Open-source models</li>
+          <li>OpenAI-compatible API</li>
+          <li>Strong coding &amp; analysis; resource-constrained friendly</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 INFRASTRUCTURE -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Infrastructure</div>
+    <h2>OpenRouter &amp; LLM Sourcing</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>OpenRouter</h3>
+        <ul>
+          <li>Unified API for 100+ models</li>
+          <li>GPT-4, Claude, Gemini, Llama</li>
+          <li>Pay-per-use pricing</li>
+          <li>Automatic fallback routing</li>
+          <li>No vendor lock-in</li>
+          <li>Easy API key management</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>LLM Sourcing Options</h3>
+        <ul>
+          <li>Cloud APIs (OpenAI, Anthropic)</li>
+          <li>Self-hosted (Llama, Mistral)</li>
+          <li>Hybrid setups</li>
+          <li>Air-gapped deployments</li>
+          <li>Cost-optimization strategies</li>
+          <li>Security &amp; compliance</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 CAPABILITIES -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Showcase</div>
+    <h2>Agent Capabilities Showcase</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>🎯 Autonomous Task Execution</h3><p>Complete multi-step tasks without human intervention</p></div>
+      <div class="card"><h3>🔗 Tool Integration</h3><p>Connect to APIs, databases, calendars, email systems</p></div>
+      <div class="card"><h3>🧠 Contextual Reasoning</h3><p>Understand context &amp; remember past interactions</p></div>
+      <div class="card"><h3>📝 Content Generation</h3><p>Draft reports, emails, briefings, presentations</p></div>
+      <div class="card"><h3>🔍 Research &amp; Analysis</h3><p>Search the web, summarize findings, extract insights</p></div>
+      <div class="card"><h3>🤝 Multi-Agent Coordination</h3><p>Teams of agents working together on complex problems</p></div>
+    </div>
+  </section>
+
+  <!-- 16 USE CASES -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Applications</div>
+    <h2>Potential Use Cases</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>Intelligence Analysis</h3><p>Automated OSINT gathering, pattern detection, threat assessment</p></div>
+      <div class="card"><h3>Logistics Optimization</h3><p>Supply-chain planning, route &amp; resource optimization</p></div>
+      <div class="card"><h3>Training &amp; Simulation</h3><p>AI-driven scenarios, adaptive learning, after-action reviews</p></div>
+      <div class="card"><h3>Communications</h3><p>Drafting briefings, translating documents, summarizing reports</p></div>
+      <div class="card"><h3>Cybersecurity</h3><p>Threat monitoring, anomaly detection, incident response</p></div>
+      <div class="card"><h3>Decision Support</h3><p>Scenario modeling, risk assessment, recommendation engines</p></div>
+    </div>
+  </section>
+
+  <!-- 17 PACING / TAKE -->
+  <section class="slide">
+    <div class="kicker">Facilitation</div>
+    <h2>Suggested Pacing (60 min)</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>0–8 min</h3><p>Title open, Day 1 agenda, LLMs vs Agents</p></div>
+      <div class="card"><h3>8–18 min</h3><p>Key criteria, timeline, types of agents</p></div>
+      <div class="card"><h3>18–30 min</h3><p>Live demo — email, calendar, updates, summarization</p></div>
+      <div class="card"><h3>30–45 min</h3><p>Day 2: deployment, build vs buy, infrastructure</p></div>
+      <div class="card"><h3>45–55 min</h3><p>Capabilities showcase, use-case brainstorm</p></div>
+      <div class="card"><h3>55–60 min</h3><p>Close, Q&amp;A, next steps</p></div>
+    </div>
+  </section>
+
+  <!-- 18 THANK YOU -->
+  <section class="slide center">
+    <div class="big">THANK YOU</div>
+    <div class="kicker" style="margin-top:20px;">Questions &amp; Discussion</div>
+    <div class="topline" style="margin:24px auto;"></div>
+    <p style="font-size:clamp(16px,2vw,22px); font-weight:700;">Subhankar Pattanayak</p>
+    <p class="muted" style="font-size:clamp(13px,1.6vw,16px); margin-top:6px;">
+      IMI Bhubaneswar · subhankar003.fpm26@imibh.edu.in</p>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var rail = document.getElementById('rail');
+    var hud = document.getElementById('hud');
+    var prog = document.getElementById('prog');
+    var cur = 0, total = slides.length;
+
+    slides.forEach(function(_, i){
+      var b = document.createElement('button');
+      b.className = 'dot'; b.setAttribute('aria-label','Slide '+(i+1));
+      b.addEventListener('click', function(){ go(i); });
+      rail.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(rail.children);
+
+    function go(i){
+      cur = (i + total) % total;
+      slides.forEach(function(s, j){ s.classList.toggle('active', j===cur); });
+      dots.forEach(function(d, j){ d.classList.toggle('on', j===cur); });
+      hud.textContent = (cur+1) + ' / ' + total;
+      prog.style.setProperty('--p', (cur+1)/total*100 + '%');
+    }
+    function next(){ go(cur+1); }
+    function prev(){ go(cur-1); }
+
+    document.addEventListener('keydown', function(){});
+    document.addEventListener('keydown', function(e){
+      if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].indexOf(e.key) !== -1){ e.preventDefault(); next(); }
+      if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key) !== -1){ e.preventDefault(); prev(); }
+      if(e.key === 'Home'){ go(0); }
+      if(e.key === 'End'){ go(total-1); }
+    });
+
+    // click anywhere on deck (not rail) advances
+    document.getElementById('deck').addEventListener('click', function(e){
+      var x = e.clientX;      if(x > window.innerWidth - 90) return;
+      next();
+    });
+
+    go(0);
+  })();
+</script>
+</body>
+</html>
