@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI — Made Simple</title>
+<style>
+  :root{
+    --bg:#060D1E; --accent:#00D4FF; --card:#0F1A30; --border:#2A3A5C;
+    --white:#FFFFFF; --grey:#A8B4C8; --font:'Calibri','Segoe UI',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html,body{height:100%; background:var(--bg); color:var(--white);
+    font-family:var(--font); overflow:hidden;}
+  #prog{position:fixed; top:0; left:0; height:5px; background:var(--accent);
+    width:var(--p,0%); z-index:50; transition:width .3s ease;}
+  #rail{position:fixed; right:18px; top:50%; transform:translateY(-50%);
+    display:flex; flex-direction:column; gap:10px; z-index:40;}
+  .dot{width:10px; height:10px; border-radius:50%; border:1px solid var(--accent);
+    background:transparent; cursor:pointer; padding:0; transition:.2s;}
+  .dot.on{background:var(--accent); transform:scale(1.3);}
+  #hud{position:fixed; bottom:18px; left:22px; font-size:13px; color:var(--grey);
+    letter-spacing:1px; z-index:40;}
+  #brand{position:fixed; bottom:18px; right:22px; font-size:12px; color:var(--border);
+    letter-spacing:.5px; z-index:40;}
+  .deck{position:fixed; inset:0;}
+  .slide{position:absolute; inset:0; display:none; flex-direction:column;
+    justify-content:center; padding:6vw 7vw; opacity:0;}
+  .slide.active{display:flex; animation:fade .4s ease forwards;}
+  @keyframes fade{from{opacity:0; transform:translateY(10px);} to{opacity:1; transform:none;}}
+  .kicker{font-size:clamp(13px,1.6vw,17px); font-weight:700; color:var(--accent);
+    letter-spacing:2px; text-transform:uppercase; margin-bottom:14px;}
+  h1{font-size:clamp(34px,5vw,64px); font-weight:700; line-height:1.05;
+    margin-bottom:8px;}
+  h2{font-size:clamp(26px,3.6vw,42px); font-weight:700; margin-bottom:24px;}
+  .sub{font-size:clamp(15px,1.9vw,21px); color:var(--grey); margin-bottom:6px;}
+  .muted{color:var(--grey);}
+  .topline{border-top:2px solid var(--accent); width:70px; margin-bottom:26px;}
+  .grid{display:grid; gap:18px;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .card{background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:22px 24px;}
+  .card h3{color:var(--accent); font-size:clamp(16px,1.9vw,21px); margin-bottom:8px;
+    letter-spacing:.5px;}
+  .card p{font-size:clamp(14px,1.6vw,18px); color:var(--white); line-height:1.5;}
+  .card .small{font-size:clamp(12px,1.4vw,15px); color:var(--grey); margin-top:6px;}
+  ul{list-style:none;}
+  ul li{font-size:clamp(15px,1.9vw,20px); padding:7px 0 7px 26px; position:relative;
+    line-height:1.4;}
+  ul li::before{content:"•"; color:var(--accent); position:absolute; left:4px;
+    font-weight:700;}
+  .row{display:flex; gap:20px; align-items:flex-start;}
+  .formula{font-size:clamp(20px,2.8vw,30px); font-weight:700; color:var(--accent);
+    text-align:center; padding:22px; margin-top:26px;}
+  .seq{color:var(--accent); font-weight:700; margin-right:12px;}
+  .agenda li .seq{display:inline-block;}
+  .num{font-size:clamp(60px,10vw,140px); font-weight:800; color:transparent;
+    -webkit-text-stroke:2px var(--accent); line-height:1; margin-bottom:14px;}
+  .center{text-align:center; justify-content:center; align-items:center;}
+  .big{font-size:clamp(44px,8vw,96px); font-weight:800;}
+  .divider{justify-content:center;}
+  .divider .amber{color:var(--accent);}
+  em.tag{font-style:italic; color:var(--grey); font-size:clamp(13px,1.5vw,16px);}
+  @media(max-width:760px){ .g3{grid-template-columns:1fr;} .row{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div id="rail"></div>
+<div id="hud"></div>
+<div id="brand">Agentic AI · Made Simple</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide center">
+    <div class="kicker">A Friendly Two-Day Workshop</div>
+    <h1>AGENTIC AI MADE SIMPLE</h1>
+    <h2 class="sub" style="margin-bottom:10px;">No jargon. No coding. Just the big idea.</h2>
+    <p class="sub" style="margin-bottom:34px;">Understand AI helpers — and what they can do for you</p>
+    <div class="topline" style="margin:0 auto 26px;"></div>
+    <p class="sub" style="font-size:clamp(14px,1.8vw,19px);">
+      The Big Idea &nbsp;→&nbsp; What Helpers Do &nbsp;→&nbsp; How to Choose &nbsp;→&nbsp; Your Work
+    </p>
+    <p style="margin-top:40px; font-size:clamp(15px,1.8vw,19px); font-weight:700;">Subhankar Pattanayak</p>
+    <p class="muted" style="font-size:clamp(12px,1.5vw,15px); margin-top:4px;">
+      IMI Bhubaneswar · subhankar003.fpm26@imibh.edu.in</p>
+    <div class="kicker" style="margin-top:46px;">Press → to begin</div>
+  </section>
+
+  <!-- 2 SECTION DIVIDER -->
+  <section class="slide divider center">
+    <div class="num">01</div>
+    <h1>DAY 1 · WHAT IS AN AI HELPER?</h1>
+    <p class="sub">Plain talk and analogies first — then watch one work, live.</p>
+  </section>
+
+  <!-- 3 WHAT IS AI -->
+  <section class="slide">
+    <div class="kicker">Start Here</div>
+    <h2>Artificial Intelligence, plain and simple</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>📖 It reads and writes</h3><p>Like a colleague who has read millions of documents. Ask a question — it answers, in any style you like.</p></div>
+      <div class="card"><h3>🗣️ It follows instructions</h3><p>Give a clear request, get a clear answer. Think of briefing a capable, well-read assistant.</p></div>
+      <div class="card"><h3>✋ It has no hands (yet)</h3><p>On its own, AI can only talk. To actually <em>do</em> things, it needs tools. That's the whole story of this workshop.</p></div>
+    </div>
+  </section>
+
+  <!-- 4 TALKING VS DOING -->
+  <section class="slide">
+    <div class="kicker">The Heart of the Idea</div>
+    <h2>Talking vs Doing — the difference that matters</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>💬 A brilliant talker</h3>
+        <ul>
+          <li>You ask, it answers</li>
+          <li>Forgets everything between chats</li>
+          <li>Can't actually do anything — no hands</li>
+          <li>Like: a genius co-worker who only gives advice</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🦾 A helper that acts</h3>
+        <ul>
+          <li>Remembers what you told it</li>
+          <li>Can send email, book meetings, search the web</li>
+          <li>Thinks several steps ahead and finishes the job</li>
+          <li>Like: a focused personal assistant who handles it end-to-end</li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula">A Helper = a brilliant talker + a memory + hands + permission to work</div>
+  </section>
+
+  <!-- 5 SIX TRAITS -->
+  <section class="slide">
+    <div class="kicker">What to Look For</div>
+    <h2>Six things that make a real Helper</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>🌟 Works alone</h3><p>You set the goal, it finds the way. No hand-holding.</p></div>
+      <div class="card"><h3>👀 Pays attention</h3><p>Notices the situation and reacts to the context around it.</p></div>
+      <div class="card"><h3>🧩 Thinks in steps</h3><p>Breaks a big task into a clear plan and works through it.</p></div>
+      <div class="card"><h3>🧠 Remembers</h3><p>Keeps track of what has been done — even across different days.</p></div>
+      <div class="card"><h3>🤌 Has hands</h3><p>Sends emails, updates calendars, opens files, reaches the web.</p></div>
+      <div class="card"><h3>📈 Learns</h3><p>Gets better from feedback and from what it experiences.</p></div>
+    </div>
+  </section>
+
+  <!-- 6 TIMELINE -->
+  <section class="slide">
+    <div class="kicker">The Short History</div>
+    <h2>How we got here — fast</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>Earlier</h3><p><strong style="color:var(--white);">One-trick helpers</strong></p><p class="small">Could do a single task, like spelling or translating.</p></div>
+      <div class="card"><h3>2022–23</h3><p><strong style="color:var(--white);">Everyone could talk to AI</strong></p><p class="small">Sudden star performer: suddenly people could just chat with it.</p></div>
+      <div class="card"><h3>2023–24</h3><p><strong style="color:var(--white);">Helpers learn to act</strong></p><p class="small">Tools arrived that let AI send emails and browse the web.</p></div>
+      <div class="card"><h3>2024–25</h3><p><strong style="color:var(--white);">Helpers go to work</strong></p><p class="small">Genuinely useful assistants used daily by real people.</p></div>
+      <div class="card"><h3>2025–26</h3><p><strong style="color:var(--white);">Teams of helpers</strong></p><p class="small">Several helpers working together on one big job.</p></div>
+      <div class="card"><h3>Next</h3><p><strong style="color:var(--white);">You</strong></p><p class="small">This workshop gives you the big idea — then you decide where to use it.</p></div>
+    </div>
+  </section>
+
+  <!-- 7 TYPES -->
+  <section class="slide">
+    <div class="kicker">The Menu</div>
+    <h2>Kinds of helpers you'll meet</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>⚡ Instant responder</h3><p>Acts on the spot, no memory. Like a vending machine — press, get.</p></div>
+      <div class="card"><h3>📓 Aware helper</h3><p>Keeps notes about the situation as it works, so it doesn't get lost.</p></div>
+      <div class="card"><h3>🎯 Goal-chaser</h3><p>Has a clear target and plans every move to reach it.</p></div>
+      <div class="card"><h3>⚖️ Best-choice helper</h3><p>Weighs the options and picks the one that gives the best result.</p></div>
+      <div class="card"><h3>🎓 Fast learner</h3><p>Improves from its mistakes and adapts over time.</p></div>
+      <div class="card"><h3>👥 Team of helpers</h3><p>Several helpers split a big task and divide and conquer it.</p></div>
+    </div>
+  </section>
+
+  <!-- 8 LIVE DEMO -->
+  <section class="slide">
+    <div class="kicker">Day 1 · See It Happen</div>
+    <h2>Watch a helper work — live</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>📧 Your email, done for you</h3><p>"Draft a reply to the Colonel about the briefing." It writes it — and sends it.</p></div>
+      <div class="card"><h3>📅 Your calendar, managed</h3><p>"Move my meeting to 4pm and remind me an hour before." Done.</p></div>
+      <div class="card"><h3>🔔 Your daily brief</h3><p>A morning summary of the news, the weather, and your tasks — waiting for you.</p></div>
+      <div class="card"><h3>📄 Reports, summarized</h3><p>Hand it a long report and get the key points in minutes, not hours.</p></div>
+    </div>
+    <p class="muted" style="margin-top:24px; font-style:italic; font-size:clamp(14px,1.7vw,18px);">
+      We'll do small hands-on examples of each, so you <em>feel</em> it rather than just learn it.
+    </p>
+  </section>
+
+  <!-- 9 DAY 2 DIVIDER -->
+  <section class="slide divider center">
+    <div class="num">02</div>
+    <h1>DAY 2 · PUTTING HELPERS TO WORK</h1>
+    <p class="sub">From watching — to choosing and using one in your world.</p>
+  </section>
+
+  <!-- 10 AGENDA DAY 2 -->
+  <section class="slide">
+    <div class="kicker">Day 2 · A Practical Day</div>
+    <h2>Today, plain and practical</h2>
+    <div class="topline"></div>
+    <ul class="agenda" style="max-width:900px;">
+      <li><span class="seq">01</span>Where a helper can live — and what that means for you</li>
+      <li><span class="seq">02</span>Buy a ready-made helper, or build your own</li>
+      <li><span class="seq">03</span>What a helper can genuinely do for you</li>
+      <li><span class="seq">04</span>Real examples of AI in military work</li>
+      <li><span class="seq">05</span>A 60-minute plan to try it yourself this week</li>
+    </ul>
+  </section>
+
+  <!-- 11 WHERE THEY LIVE -->
+  <section class="slide">
+    <div class="kicker">Day 2 · The Choice</div>
+    <h2>Where can a helper live?</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>💻 On your laptop</h3>
+        <ul>
+          <li>Like an app installed on your own computer</li>
+          <li>Private — everything stays with you</li>
+          <li>Works even when offline</li>
+          <li>Best for sensitive work that shouldn't leave your desk</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>☁️ In the cloud (big shared computers)</h3>
+        <ul>
+          <li>Runs on a company's large, secure server rooms</li>
+          <li>Can be reached from anywhere, on any device</li>
+          <li>Handles bigger jobs and more people at once</li>
+          <li>Best when several people need it together</li>
+        </ul>
+      </div>
+    </div>
+    <div class="formula" style="font-size:clamp(17px,2.2vw,24px);">Both work. Your choice is about privacy, cost, and how big the job is.</div>
+  </section>
+
+  <!-- 12 READY-MADE -->
+  <section class="slide">
+    <div class="kicker">Day 2 · Buy or Build</div>
+    <h2>Ready-made helpers vs building your own</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>📱 Social media helper</h3><p>Writes posts, replies, and keeps your X/Twitter account active — so you don't have to.</p></div>
+      <div class="card"><h3>💼 Personal assistant</h3><p>Chats with you on WhatsApp or Telegram, runs on your own machine, keeps your data private.</p></div>
+      <div class="card"><h3>🚀 Self-starter</h3><p>You name a goal; it figures out the steps and browses the web to finish it on its own.</p></div>
+      <div class="card"><h3>👥 Team coordinator</h3><p>Splits one big job between several helpers with different roles that work together.</p></div>
+    </div>
+  </section>
+
+  <!-- 13 CAPABILITIES -->
+  <section class="slide">
+    <div class="kicker">Day 2 · What They Do</div>
+    <h2>What a helper can genuinely do for you</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>🎯 Finish jobs on its own</h3><p>Complete a multi-step task without you supervising every step.</p></div>
+      <div class="card"><h3>🔗 Connect your tools</h3><p>Reach your email, calendar, files, and data without you hopping apps.</p></div>
+      <div class="card"><h3>🧠 Remembers the conversation</h3><p>Keeps the context, so you don't repeat yourself.</p></div>
+      <div class="card"><h3>📝 Writes anything</h3><p>Reports, emails, briefings, and slide decks — drafted in seconds.</p></div>
+      <div class="card"><h3>🔍 Researches for you</h3><p>Searches the web and pulls out the useful parts.</p></div>
+      <div class="card"><h3>🤝 Teams up</h3><p>Several helpers collaborating on one large, messy problem.</p></div>
+    </div>
+  </section>
+
+  <!-- 14 USE CASES -->
+  <section class="slide">
+    <div class="kicker">Day 2 · In Your Work</div>
+    <h2>What's in it for you — real examples</h2>
+    <div class="topline"></div>
+    <div class="grid g3">
+      <div class="card"><h3>🕵️ Intelligence &amp; recon</h3><p>Scans open sources automatically, spots patterns, and raises alerts early.</p></div>
+      <div class="card"><h3>📦 Logistics &amp; supply</h3><p>Plans routes and keeps supplies and resources on time.</p></div>
+      <div class="card"><h3>🎓 Training &amp; practice</h3><p>Realistic practice scenarios and a review afterwards of how it went.</p></div>
+      <div class="card"><h3>📣 Communications</h3><p>Drafts briefings, translates documents, and summarises reports.</p></div>
+      <div class="card"><h3>🛡️ Cybersecurity</h3><p>Watches for threats and unusual activity around the clock, not just 9-to-5.</p></div>
+      <div class="card"><h3>🧭 Better decisions</h3><p>Lays out scenarios, weighs the risks, and suggests options to choose from.</p></div>
+    </div>
+  </section>
+
+  <!-- 15 PACING -->
+  <section class="slide">
+    <div class="kicker">Your Journey</div>
+    <h2>A 60-minute plan — try it this week</h2>
+    <div class="topline"></div>
+    <div class="grid g2">
+      <div class="card"><h3>0–8 min</h3><p>The big idea: talking vs doing.</p></div>
+      <div class="card"><h3>8–18 min</h3><p>The six traits of a real helper.</p></div>
+      <div class="card"><h3>18–30 min</h3><p>Watch helpers work — live demos.</p></div>
+      <div class="card"><h3>30–45 min</h3><p>Where helpers live &amp; how to choose.</p></div>
+      <div class="card"><h3>45–55 min</h3><p>What they can do in your work.</p></div>
+      <div class="card"><h3>55–60 min</h3><p>Your questions — and one thing to try this week.</p></div>
+    </div>
+  </section>
+
+  <!-- 16 THANK YOU -->
+  <section class="slide center">
+    <div class="big">THANK YOU</div>
+    <div class="kicker" style="margin-top:20px;">Questions &amp; Discussion — no silly questions here</div>
+    <div class="topline" style="margin:24px auto;"></div>
+    <p style="font-size:clamp(16px,2vw,22px); font-weight:700;">Subhankar Pattanayak</p>
+    <p class="muted" style="font-size:clamp(13px,1.6vw,16px); margin-top:6px;">
+      IMI Bhubaneswar · subhankar003.fpm26@imibh.edu.in</p>
+  </section>
+
+</div>
+
+<script>
+  (function(){
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var rail = document.getElementById('rail');
+    var hud = document.getElementById('hud');
+    var prog = document.getElementById('prog');
+    var cur = 0, total = slides.length;
+
+    slides.forEach(function(_, i){
+      var b = document.createElement('button');
+      b.className = 'dot'; b.setAttribute('aria-label','Slide '+(i+1));
+      b.addEventListener('click', function(){ go(i); });
+      rail.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(rail.children);
+
+    function go(i){
+      cur = (i + total) % total;
+      slides.forEach(function(s, j){ s.classList.toggle('active', j===cur); });
+      dots.forEach(function(d, j){ d.classList.toggle('on', j===cur); });
+      hud.textContent = (cur+1) + ' / ' + total;
+      prog.style.setProperty('--p', (cur+1)/total*100 + '%');
+    }
+    function next(){ go(cur+1); }
+    function prev(){ go(cur-1); }
+
+    document.addEventListener('keydown', function(e){
+      if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].indexOf(e.key) !== -1){ e.preventDefault(); next(); }
+      if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key) !== -1){ e.preventDefault(); prev(); }
+      if(e.key === 'Home'){ go(0); }
+      if(e.key === 'End'){ go(total-1); }
+    });
+
+    document.getElementById('deck').addEventListener('click', function(e){
+      var x = e.clientX;      if(x > window.innerWidth - 90) return;
+      next();
+    });
+
+    go(0);
+  })();
+</script>
+</body>
+</html>
